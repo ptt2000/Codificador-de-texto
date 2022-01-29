@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encriptador de Texto</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+</head>
+<body>
+
+    <header>
+      
+      <h1>Codigo secreto</h1>
+
+    </header>
+
+    <section>
+
+      <textarea name="mensajeEncriptado" id="mensaje" cols="40" rows="5" 
+                placeholder="Escribe el texto que quieres codificar ó descodificar aqui"></textarea>
+      <br>
+      <br>
+      <button id="encriptar" onclick="encriptar()">Codificar</button>
+      <button id="desencriptar" onclick="desencriptar()">Descodificar</button>
+      <br>
+      <br>
+      <textarea name="mensajeEncriptado" placeholder="Texto codificado/Descodificado" id="respuesta" cols="40" rows="5" readonly ></textarea>
+      <br>
+      <br>
+      <button id="copiar" onclick="copiar()">Copiar Respuesta</button>
+      <button id="borrar" onclick="borrar()">Borrar todo</button>
+      
+      
+    </section>
+   
+   <script>
+      
+      function encriptar (){
+        
+        var respuesta = document.getElementById("respuesta")
+        var button = document.getElementById("encriptar");
+        var mensaje = document.getElementById("mensaje").value;
+        var arregloMensaje = mensaje.split("");
+        var letraA = "ai"
+        var letraE = "enter"
+        var letraI = "imes"
+        var letraO = "ober"
+        var letraU = "ufat"
+
+        
+        for(var posicion = 0; posicion < arregloMensaje.length ; posicion++){
+           
+           if( arregloMensaje[posicion] == "a"){
+               arregloMensaje[posicion] = letraA;
+               var mensajeEncriptado = arregloMensaje;
+             }
+
+             if( arregloMensaje[posicion] == "e"){
+                 arregloMensaje[posicion] = letraE;
+                 var mensajeEncriptado = arregloMensaje;
+               }
+             
+             if( arregloMensaje[posicion] == "i"){
+                 arregloMensaje[posicion] = letraI;
+                 var mensajeEncriptado = arregloMensaje;
+               }
+             
+             if( arregloMensaje[posicion] == "o"){
+                 arregloMensaje[posicion] = letraO;
+                 var mensajeEncriptado = arregloMensaje;
+               }
+             
+             if( arregloMensaje[posicion] == "u"){
+                 arregloMensaje[posicion] = letraU;
+                 var mensajeEncriptado = arregloMensaje;
+               }
+             
+           }
+
+           respuesta.value = mensajeEncriptado.join("");
+           
+
+      }
+
+      function desencriptar(){
+          
+        var button = document.getElementById("desencriptar");
+        var encriptado = document.getElementById("mensaje").value;
+        var respuesta = document.getElementById("respuesta")
+       
+
+         while(encriptado.includes("ai")   || encriptado.includes("enter") ||
+               encriptado.includes("imes") || encriptado.includes("ober")  ||
+               encriptado.includes("ufat") ){
+
+          encriptado = encriptado.replace("ai","a");
+          encriptado = encriptado.replace("enter","e");
+          encriptado = encriptado.replace("imes","i");
+          encriptado = encriptado.replace("ober","o");
+          encriptado = encriptado.replace("ufat","u");
+
+         }
+
+        
+        respuesta.value = encriptado;
+
+      }
+
+      function copiar(){
+
+        var textoACopiar = document.getElementById("respuesta");
+
+        textoACopiar.select();
+        document.execCommand("copy");
+        alert("Texto copiado");
+
+      }     
+
+      function borrar(){
+
+        var mensaje = document.getElementById("mensaje");
+        var respuesta = document.getElementById("respuesta");
+
+        mensaje.value = "";
+        respuesta.value ="";
+        
+        
+      }
+
+
+
+    </script>
+</body>
+</html>
